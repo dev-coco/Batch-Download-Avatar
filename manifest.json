@@ -1,0 +1,25 @@
+{
+    "manifest_version": 2,
+    "name": "批量获取头像",
+    "description": "生成现实生活中不存在的人物头像。",
+    "author": "dev-coco",
+    "version": "1.0.0",
+    "browser_action": {
+      "default_icon": "icon.png"
+    },
+    "icons": {
+      "128": "icon.png"
+    },
+    "background": {
+      "scripts": [
+        "background.js"
+      ],
+      "persistent": false
+    },
+    "permissions": [
+      "<all_urls>",
+      "tabs",
+      "storage",
+      "activeTab"
+    ]
+}

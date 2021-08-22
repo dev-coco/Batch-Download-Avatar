@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>批量获取头像</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #fc466b, #3f5efb);
+            height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .container {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+        }
+        .blur {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 3em;
+            height: 380px;
+            border-radius: 20px;
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        input,
+        select,
+        button {
+            background: transparent;
+            width: 200px important;
+            padding: 1em;
+            margin-bottom: 1.8em;
+            border: none;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            box-shadow: 4px 4px 60px rgba(0, 0, 0, 0.2);
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        select {
+            appearance: none;
+            width: 100%
+        }
+        ::placeholder {
+            font-family: Montserrat, sans-serif;
+            font-weight: 400;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        input:focus,
+        select:focus,
+        textarea:focus,
+        button:focus {
+            outline: none;
+        }
+        button {
+            width: 60px;
+        }
+        p {
+            margin: 0px;
+            font-size: 16px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="blur">
+            <p id="count"></p>
+            <select id="gender">
+                <option>全部</option>
+                <option>男</option>
+                <option>女</option>
+            </select>
+            <br>
+            <input type="text" id="min_age" placeholder="最小年龄">
+            <br>
+            <input type="text" id="max_age" placeholder="最大年龄">
+            <br>
+            <input type="text" id="avatar_count" placeholder="获取数量">
+            <br>
+            <button id="download" style="width: 100%; margin-bottom: 5px;">下载</button>
+            <br>
+            <button id="start" type="button" style="float: left;">开始</button>
+            <button id="copy" type="button" style="float: right;">复制</button>
+        </div>
+    </div>
+    <script src="options.js"></script>
+</body>
+</html>
