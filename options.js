@@ -15,7 +15,7 @@ function copy_result() {
         save_array
     }) => {
         copy(unique(save_array).join(",").replace(/,/g, "\n"));
-        alert(`已经复制: ${save_array.length}个`);
+        alert(`已排除重复，复制结果: ${unique(save_array).length}个`);
     })
 }
 
