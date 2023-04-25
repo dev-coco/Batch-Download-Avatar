@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "批量获取头像",
   "description": "生成现实生活中不存在的人物头像。",
-  "author": "dev-coco",
-  "version": "1.0.2",
+  "author": "Raz1ner",
+  "version": "1.0.3",
   "action": {
     "default_icon": "icon.png"
   },

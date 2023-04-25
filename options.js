@@ -20,37 +20,14 @@ function unique (data) {
 
 async function start () {
   chrome.storage.local.clear()
-  const getSelect = document.getElementById('gender')
-  const index = getSelect.selectedIndex
-  let genderStr, minAgeStr, maxAgeStr
-  if (index === 0) {
-    genderStr = ''
-  } else if (index === 1) {
-    genderStr = 'gender=male'
-  } else if (index === 2) {
-    genderStr = 'gender=female'
-  }
+  const gender = document.getElementById('gender').value
   const minAge = document.getElementById('minAge').value
-  if (minAge === '') {
-    minAgeStr = ''
-  } else {
-    minAgeStr = '&minimum_age=' + minAge
-  }
   var maxAge = document.getElementById('maxAge').value;
-  if (maxAge === '') {
-    maxAgeStr = ''
-  } else {
-    maxAgeStr = '&maximum_age=' + maxAge
-  }
   const avatarCount = document.getElementById('avatarCount').value
-  if (avatarCount === '') {
-    return
-  }
+  if (avatarCount === '') return
   const url = []
   for (let k = 0; k < avatarCount; k++) {
-    const response = await fetch(`https://fakeface.rest/face/json?${genderStr}${minAgeStr}${maxAgeStr}`)
-    const text = await response.text()
-    const imageUrl = JSON.parse(text).image_url
+    const imageUrl = await getImageUrl(gender, minAge, maxAge)
     url.push(imageUrl)
     document.getElementById('count').innerText = k + 1
     chrome.storage.local.set({
@@ -72,36 +49,13 @@ function copy (str) {
 }
 
 async function download () {
-  const getSelect = document.getElementById('gender')
-  const index = getSelect.selectedIndex
-  let genderStr, minAgeStr, maxAgeStr
-  if (index === 0) {
-    genderStr = ''
-  } else if (index === 1) {
-    genderStr = 'gender=male'
-  } else if (index === 2) {
-    genderStr = 'gender=female'
-  }
+  const gender = document.getElementById('gender').value
   const minAge = document.getElementById('minAge').value
-  if (minAge === '') {
-    minAgeStr = ''
-  } else {
-    minAgeStr = '&minimum_age=' + minAge
-  }
   const maxAge = document.getElementById('maxAge').value
-  if (maxAge === '') {
-    maxAgeStr = ''
-  } else {
-    maxAgeStr = '&maximum_age=' + maxAge
-  }
   const avatarCount = document.getElementById('avatarCount').value
-  if (avatarCount === '') {
-    return
-  }
+  if (avatarCount === '') return
   for (let i = 0; i < avatarCount; i++) {
-    const response = await fetch(`https://fakeface.rest/face/json?${genderStr}${minAgeStr}${maxAgeStr}`)
-    const text = await response.text()
-    const imageUrl = JSON.parse(text).image_url
+    const imageUrl = await getImageUrl(gender, minAge, maxAge)
     const elt = document.createElement('a')
     elt.setAttribute('href', imageUrl)
     elt.setAttribute('download', 'file.png')
@@ -112,4 +66,12 @@ async function download () {
   }
   const speechInstance = new window.SpeechSynthesisUtterance('头像下载完成')
   window.speechSynthesis.speak(speechInstance)
+}
+
+// 获取图片链接
+async function getImageUrl (gender, minAge, maxAge) {
+  const obj = { gender, minAge, maxAge }
+  const response = await fetch(`https://script.google.com/macros/s/AKfycbxReprZ-S3HlGDxp-0t3hkphN7pKMRzb83RncbDmqN1sVwHMbq0DqmaonHjgfoiTCRw/exec?${new URLSearchParams(obj).toString()}`)
+  const text = await response.text()
+  return text
 }

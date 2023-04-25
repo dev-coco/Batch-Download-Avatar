@@ -71,14 +71,14 @@
     <div class="blur">
       <p id="count"></p>
       <select id="gender">
-        <option>全部</option>
-        <option>男</option>
-        <option>女</option>
+        <option value="">全部</option>
+        <option value="male">男</option>
+        <option value="female">女</option>
       </select>
       <br>
-      <input type="text" id="minAge" placeholder="最小年龄">
+      <input type="text" id="minAge" min="0" max="100" placeholder="最小年龄">
       <br>
-      <input type="text" id="maxAge" placeholder="最大年龄">
+      <input type="text" id="maxAge" min="0" max="100" placeholder="最大年龄">
       <br>
       <input type="text" id="avatarCount" placeholder="获取数量">
       <br>
